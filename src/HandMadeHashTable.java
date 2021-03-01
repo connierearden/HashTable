@@ -2,25 +2,27 @@ import java.util.Arrays;
 
 public class HandMadeHashTable {
     int capacity = 16;
-    Pair [] array = new Pair[capacity];
+    Node [] array = new Node[capacity];
     int memberCount;
 
-    public int getIndex (String k) {
+    public int getIndexOfKey (String k) {
         return Math.abs(new Pair(k).hashCode() % capacity);
     }
 
     public void put (String k, Integer v) {
-        array[getIndex(k)] = new Pair(k,v);
-        memberCount++;
+       int i =  getIndexOfKey(k);
+       Pair pair = new Pair(k,v);
+       Node node = this.array[i];
+       node.add(pair);
     }
 
-    public Pair get(String k) {
+/*    public Pair get(String k) {
         return array[getIndex(k)].getKey().equals(k) ? array[getIndex(k)] : null;
-    }
+    }*/
 
-    public void remove (String k) {
+/*    public void remove (String k) {
         array[getIndex(k)]=null;
-    }
+    }*/
 
     @Override
     public String toString() {
